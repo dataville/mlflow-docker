@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  mlflow:
+    build: .
+    container_name: mlflow-tracking
+    ports:
+      - "5000:5000"
+    volumes:
+      - mlflow-data:/mlflow
+    restart: unless-stopped
+    networks:
+      - mlflow-network
+
+volumes:
+  mlflow-data:
+
+networks:
+  mlflow-network:
+    driver: bridge
